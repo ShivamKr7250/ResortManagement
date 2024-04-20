@@ -35,6 +35,7 @@ namespace ResortManagement.Web.Controllers
             {
                 _db.Villas.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "The villa has been Created successfully.";
                 return RedirectToAction("Index", "Villa");
             }
             else
@@ -63,6 +64,7 @@ namespace ResortManagement.Web.Controllers
             {
                 _db.Villas.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "The villa has been Updated successfully.";
                 return RedirectToAction("Index", "Villa");
             }
             return View();
@@ -89,8 +91,10 @@ namespace ResortManagement.Web.Controllers
             {
                 _db.Villas.Remove(objFromDb);
                 _db.SaveChanges();
+                TempData["error"] = "The villa has been deleted successfully.";
                 return RedirectToAction("Index", "Villa");
             }
+            TempData["error"] = "The villa has could not be deleted.";
             return View();
         }
 
