@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using ResortManagement.Application.Common.Interfaces;
 using ResortManagement.Infrastructure.Data;
+using ResortManagement.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ builder.Services.AddControllersWithViews();
 // Added DbContext File 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
