@@ -44,7 +44,7 @@ namespace ResortManagement.Web.Controllers
             if(ModelState.IsValid && !roomNumberExists)
             {
                 _unitOfWork.VillaNumber.Add(obj.VillaNumber);
-                _unitOfWork.VillaNumber.Save();
+                _unitOfWork.Save();
                 TempData["success"] = "The villa Number has been Created successfully.";
                 return RedirectToAction("Index", "VillaNumber");
             }
@@ -87,7 +87,7 @@ namespace ResortManagement.Web.Controllers
             if (ModelState.IsValid)
             {
                 _unitOfWork.VillaNumber.Update(villaNumberVM.VillaNumber);
-                _unitOfWork.VillaNumber.Save();
+                _unitOfWork.Save();
                 TempData["success"] = "The villa Number has been Updated successfully.";
                 return RedirectToAction("Index", "VillaNumber");
             }
@@ -126,7 +126,7 @@ namespace ResortManagement.Web.Controllers
             if (objFromDb is not null)
             {
                 _unitOfWork.VillaNumber.Remove(objFromDb);
-                _unitOfWork.VillaNumber.Save();
+                _unitOfWork.Save();
                 TempData["error"] = "The villa number has been deleted successfully.";
                 return RedirectToAction("Index", "VillaNumber");
             }

@@ -1,4 +1,5 @@
 ﻿using ResortManagement.Application.Common.Interfaces;
+using ResortManagement.Domain;
 using ResortManagement.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -8,20 +9,18 @@ using System.Threading.Tasks;
 
 namespace ResortManagement.Infrastructure.Repository
 {
-    public class UnitOfWork : IUnitOfWork
+    public class AmenityRepository : Repository<Amenity>, IAmenity
     {
         private readonly ApplicationDbContext _db;
 
-        public IVillaRepository Villa { get; private set; }
-        public IVillaNumberRepository VillaNumber { get; private set; }
-        public IAmenity Amenity { get; private set; }
-
-        public UnitOfWork(ApplicationDbContext db)
+        public AmenityRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
-            Villa = new VillaRepository(_db);
-            VillaNumber = new VillaNumberRepository(_db); 
-            Amenity = new AmenityRepository(_db);
+        }
+
+        public void Update(Amenity entity)
+        {
+            _db.Amenities.Update(entity);
         }
 
         public void Save()
