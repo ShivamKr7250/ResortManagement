@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ResortManagement.Application.Common.Interfaces;
+using ResortManagement.Application.Common.Utility;
 using ResortManagement.Domain;
 using ResortManagement.Infrastructure.Data;
 using ResortManagement.Web.ViewModels;
 
 namespace ResortManagement.Web.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     public class AmenityController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
