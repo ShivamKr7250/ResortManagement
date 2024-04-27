@@ -41,5 +41,8 @@ namespace ResortManagement.Domain
 
         [ValidateNever]
         public IEnumerable<Amenity>  VillaAmenity { get; set; }
+
+        [NotMapped]
+        public bool IsAvailale { get; set; } = true;
     }
 }
