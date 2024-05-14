@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ResortManagement.Domain;
+using ResortManagement.Domain.Entities;
 
 namespace ResortManagement.Web.ViewModels
 {

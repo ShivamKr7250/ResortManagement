@@ -1,4 +1,4 @@
-﻿using ResortManagement.Domain;
+﻿using ResortManagement.Domain.Entities;
 
 namespace ResortManagement.Web.ViewModels
 {

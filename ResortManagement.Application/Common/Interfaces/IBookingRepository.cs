@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ResortManagement.Application.Common.Interfaces
 {
-    public interface IAmenity : IRepository<Amenity>
+    public interface IBookingRepository : IRepository<Booking>
     {
-        void Update(Amenity entity);
+        void Update(Booking entity);
     }
 }

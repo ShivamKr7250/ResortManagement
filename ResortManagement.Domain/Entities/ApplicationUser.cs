@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ResortManagement.Domain
+namespace ResortManagement.Domain.Entities
 {
     public class ApplicationUser : IdentityUser
     {
-        public string Name {get; set;}
+        public string Name { get; set; }
 
-        public DateTime CreatedAt { get; set;}
+        public DateTime CreatedAt { get; set; }
 
 
     }

@@ -1,5 +1,5 @@
 ﻿using ResortManagement.Application.Common.Interfaces;
-using ResortManagement.Domain;
+using ResortManagement.Domain.Entities;
 using ResortManagement.Infrastructure.Data;
 using System;
 using System.Collections.Generic;

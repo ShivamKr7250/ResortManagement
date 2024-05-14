@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ResortManagement.Application.Common.Interfaces;
-using ResortManagement.Domain;
+using ResortManagement.Domain.Entities;
 using ResortManagement.Infrastructure.Data;
 
 namespace ResortManagement.Web.Controllers

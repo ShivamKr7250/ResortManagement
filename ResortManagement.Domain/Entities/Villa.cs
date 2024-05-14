@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ResortManagement.Domain
+namespace ResortManagement.Domain.Entities
 {
     public class Villa
     {
@@ -21,26 +21,26 @@ namespace ResortManagement.Domain
 
         public string? Description { get; set; }
 
-        [Display (Name = "Price Per Night")]
-        [Range(10,10000)]
+        [Display(Name = "Price Per Night")]
+        [Range(10, 10000)]
         public double Price { get; set; }
 
         public int Sqft { get; set; }
 
-        [Range(1,10)]
+        [Range(1, 10)]
         public int Occupancy { get; set; }
 
         [NotMapped]
         public IFormFile? Image { get; set; }
-        [Display (Name = "Image Url")]
+        [Display(Name = "Image Url")]
         public string? ImageUrl { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 
-        public DateTime? UpdatedDate { get; set;}
+        public DateTime? UpdatedDate { get; set; }
 
         [ValidateNever]
-        public IEnumerable<Amenity>  VillaAmenity { get; set; }
+        public IEnumerable<Amenity> VillaAmenity { get; set; }
 
         [NotMapped]
         public bool IsAvailale { get; set; } = true;

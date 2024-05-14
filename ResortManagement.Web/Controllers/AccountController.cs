@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ResortManagement.Application.Common.Interfaces;
 using ResortManagement.Application.Common.Utility;
-using ResortManagement.Domain;
+using ResortManagement.Domain.Entities;
 using ResortManagement.Web.ViewModels;
 
 namespace ResortManagement.Web.Controllers

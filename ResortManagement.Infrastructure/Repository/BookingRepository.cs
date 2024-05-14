@@ -9,23 +9,18 @@ using System.Threading.Tasks;
 
 namespace ResortManagement.Infrastructure.Repository
 {
-    public class VillaNumberRepository : Repository<VillaNumber>, IVillaNumberRepository
+    public class BookingRepository : Repository<Booking>, IBookingRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public VillaNumberRepository(ApplicationDbContext db) : base(db)
+        public BookingRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(VillaNumber entity)
+        public void Update(Booking entity)
         {
-            _db.VillaNumbers.Update(entity);
-        }
-
-        public void Save()
-        {
-            _db.SaveChanges();
+            _db.Bookings.Update(entity);
         }
     }
 }
