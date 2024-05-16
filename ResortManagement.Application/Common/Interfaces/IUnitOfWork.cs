@@ -12,6 +12,7 @@ namespace ResortManagement.Application.Common.Interfaces
         IVillaNumberRepository VillaNumber { get; }
         IAmenity Amenity { get; }
         IBookingRepository Booking { get; }
+        IApplicationUserRepository User { get; }
         void Save();
     }
 }

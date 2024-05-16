@@ -21,7 +21,7 @@
                     <h4 class="text-danger font-weight-bold ">
                         Booking Total :
                         <span style="border-bottom:1px solid #ff6a00">
-                            $11
+                            @Model.TotalCost.ToString("c")
                         </span>
                     </h4>
                 </div>
@@ -29,6 +29,12 @@
         </div>
         <div class="col-12 col-lg-5 p-4 2 mt-4 mt-md-0" style="border-left:1px solid #aaa">
             <form method="post">
+                <input asp-for="VillaId" hidden />
+                <input asp-for="UserId" hidden />
+                <input asp-for="CheckInDate" hidden />
+                <input asp-for="CheckOutDate" hidden />
+                <input asp-for="Nights" hidden />
+
                 <div class="row pt-1 mb-3 " style="border-radius:20px; ">
                     <div class="col-12">
                         <h3 class="text-success">Enter Booking Details</h3>
@@ -36,34 +42,47 @@
                 </div>
 
                 <div class="form-group pt-0">
-                    <label class="text-warning">Name</label>
-                    <input class="form-control" />
+                    <label asp-for="Name" class="text-warning">Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group pt-2">
-                    <label class="text-warning">Phone</label>
-                    <input class="form-control" />
+                    <label asp-for="Phone" class="text-warning">Phone</label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
                 <div class="form-group pt-2">
-                    <label class="text-warning">Email</label>
-                    <input class="form-control" />
+                    <label asp-for="Email" class="text-warning">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group pt-2">
-                    <label class="text-warning">Check in Date</label>
-                    <input disabled class="form-control" />
+                    <label asp-for="CheckInDate" class="text-warning">Check in Date</label>
+                    <input asp-for="CheckInDate" disabled class="form-control" />
                 </div>
                 <div class="form-group pt-2">
-                    <label class="text-warning">Check Out Date</label>
-                    <input disabled class="form-control" />
+                    <label asp-for="CheckOutDate" class="text-warning">Check Out Date</label>
+                    <input asp-for="CheckOutDate" disabled class="form-control" />
                 </div>
                 <div class="form-group pt-2">
-                    <label class="text-warning">No. of nights</label>
-                    <input disabled class="form-control" />
+                    <label asp-for="Nights" class="text-warning">No. of nights</label>
+                    <input asp-for="Nights" disabled class="form-control" />
                 </div>
                 <div class="form-group pt-2 pt-md-4">
-                    <input class="btn btn-danger disabled form-control" value="Sold Out" />
-                    <button type="submit" class="btn btn-success form-control">Looks Good! Checkout Now</button>
+                    @if (Model.Villa.IsAvailale)
+                    {
+                        <button type="submit" class="btn btn-success form-control">Looks Good! Checkout Now</button>
+                    }
+                    else
+                    {
+                        <input class="btn btn-danger disabled form-control" value="Sold Out" />
+                    }
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
