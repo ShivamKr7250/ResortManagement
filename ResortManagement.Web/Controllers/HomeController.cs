@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ResortManagement.Application.Common.Interfaces;
+using ResortManagement.Application.Common.Utility;
 using ResortManagement.Web.Models;
 using ResortManagement.Web.ViewModels;
 using System.Diagnostics;
@@ -31,12 +32,13 @@ namespace ResortManagement.Web.Controllers
         {
            // Thread.Sleep(1000);
             var villaList = _unitOfWork.Villa.GetAll(includeProperties: "VillaAmenity");
+            var villaNumberList = _unitOfWork.VillaNumber.GetAll().ToList();
+            var bookedVillas = _unitOfWork.Booking.GetAll(u => u.Status == SD.StatusApproved || u.Status == SD.StatusCheckedIn).ToList();
             foreach (var villa in villaList)
             {
-                if (villa.Id % 2 == 0)
-                {
-                    villa.IsAvailale = false;
-                }
+                int roomAvailable = SD.VillaRoomsAvailable_Count(villa.Id, villaNumberList, checkInDate, nights, bookedVillas);
+
+                villa.IsAvailale = roomAvailable > 0 ? true : false;
             }
 
             HomeVM homeVM = new()
