@@ -9,6 +9,7 @@ using Syncfusion.DocIO;
 using Syncfusion.DocIO.DLS;
 using Syncfusion.DocIORenderer;
 using Syncfusion.Drawing;
+using Syncfusion.Pdf;
 using System.Security.Claims;
 
 namespace ResortManagement.Web.Controllers
@@ -219,7 +220,7 @@ namespace ResortManagement.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult GenerateInvoice(int id)
+        public IActionResult GenerateInvoice(int id, string downloadType)
         {
             string basePath = _webHostEnvironment.WebRootPath;
 
@@ -303,6 +304,16 @@ namespace ResortManagement.Web.Controllers
             row1.Cells[3].AddParagraph().AppendText(bookingFromDb.TotalCost.ToString("c"));
             row1.Cells[3].Width = 80;
 
+            if (bookingFromDb.VillaNumber > 0)
+            {
+                WTableRow row2 = table.Rows[2];
+
+                row2.Cells[0].Width = 80;
+                row2.Cells[1].AddParagraph().AppendText("Villa Number - " + bookingFromDb.VillaNumber.ToString());
+                row2.Cells[1].Width = 220;
+                row2.Cells[3].Width = 80;
+            }
+
             WTableStyle tableStyle = document.AddTableStyle("customStyle") as WTableStyle;
             tableStyle.TableProperties.RowStripe = 1;
             tableStyle.TableProperties.ColumnStripe = 2;
@@ -326,12 +337,26 @@ namespace ResortManagement.Web.Controllers
 
 
             using DocIORenderer renderer = new();
-
             MemoryStream stream = new();
-            document.Save(stream, FormatType.Docx);
-            stream.Position = 0;
 
-            return File(stream, "application/docx", "BookingDetails.docx");
+            if (downloadType == "word")
+            {
+                
+                document.Save(stream, FormatType.Docx);
+                stream.Position = 0;
+
+                return File(stream, "application/docx", "BookingDetails.docx");
+            }
+            else
+            {
+                PdfDocument pdfDocument = renderer.ConvertToPDF(document);
+                pdfDocument.Save(stream);
+                stream.Position = 0;
+
+                return File(stream, "application/pdf", "BookingDetails.pdf");
+            }
+
+            
         }
 
         [HttpPost]
