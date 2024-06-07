@@ -1,7 +1,6 @@
-﻿
-namespace ResortManagement.Web.ViewModels
+﻿namespace ResortManagement.Web.ViewModels
 {
-    public class PieChartVM
+    public class PieChartDto
     {
         public decimal[] Series { get; set; }
         public string[] Labels { get; set; }

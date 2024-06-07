@@ -1,6 +1,6 @@
 ﻿namespace ResortManagement.Web.ViewModels
 {
-    public class LineChartVM
+    public class LineChartDto
     {
         public List<ChartData> Series { get; set; }
 
