@@ -29,6 +29,7 @@ namespace ResortManagement.Web.Controllers
         {
             return View();
         }
+
         [Authorize]
         public IActionResult FinalizeBooking(int villaId, DateOnly checkInDate,int nights)
         {
